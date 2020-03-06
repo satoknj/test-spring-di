@@ -4,17 +4,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.example.blog.domain.Blog;
+import com.example.blog.interactors.BlogService;
 
 @RestController
 @RequestMapping("/api/blog")
-class BlogController {
+class BlogController(private val blogService: BlogService) {
+    init {
+        println("BlogController init")
+    }
+
     @GetMapping("/")
-    fun getBlogs(): List<Blog> {
-        return listOf(
-            Blog("yesterday", "preparing..."),
-            Blog("today", "Getting started!")
-        )
+    fun getAll(): List<Blog> {
+        println("BlogController.getAll()")
+
+        return blogService.getAll()
     }
 
     @GetMapping("/one")
