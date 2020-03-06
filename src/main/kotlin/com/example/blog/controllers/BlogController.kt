@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.LoggerFactory
 
 import com.example.blog.domain.Blog;
 import com.example.blog.interactors.BlogService;
@@ -12,13 +13,15 @@ import com.example.blog.interactors.BlogService;
 @RestController
 @RequestMapping("/api/blog")
 class BlogController(private val blogService: BlogService) {
+    val logger = LoggerFactory.getLogger(BlogController::class.java)
+
     init {
         println("BlogController init")
     }
 
     @GetMapping("/")
     fun getAll(): Iterable<Blog> {
-        println("BlogController.getAll()")
+        logger.info("BlogController.getAll()")
 
         return blogService.getAll()
     }
