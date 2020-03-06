@@ -21,3 +21,25 @@ class BlogServiceImpl : BlogService{
     // ommit
 }
 ```
+
+## やりたかったがやってないこと
+java configurationによるDI
+
+```kotlin
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+class BlogRepositoryDIConfiguration {
+
+    @Bean
+    fun getBlogRepository(): BlogRepository {
+        return new BlogRepositoryImpl()
+    }
+}
+```
+
+みたいなやつ
+
+domainにspring系のものをimportさせたくないが`CrudRepository`は使いたい場合どうする？  
+と考えていたら時間がなくなった
