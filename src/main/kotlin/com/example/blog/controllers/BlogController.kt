@@ -17,7 +17,7 @@ class BlogController(private val blogService: BlogService) {
     }
 
     @GetMapping("/")
-    fun getAll(): List<Blog> {
+    fun getAll(): Iterable<Blog> {
         println("BlogController.getAll()")
 
         return blogService.getAll()
